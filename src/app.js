@@ -1,14 +1,14 @@
-define(["underscore", "remoteDebug/main", "chrome/main", "chrome/debug"] ,
-    function (_, remoteDebug, debug, chrome) {
+define(["remoteDebug/main", "chrome/main", "chrome/debug"] ,
+    function (remoteDebug, extension, debug) {
     return {
         init: function() {
-            chrome.init();
+            extension.init();
             remoteDebug.init();
             debug.init();
-            chrome.on("connect", function(page) {
+            extension.on("connect", function(page) {
                 console.debug("Page has connected");
             });
-            chrome.on("disconnect", function(page) {
+            extension.on("disconnect", function(page) {
                 console.debug("Page has disconnected");
             });
         }

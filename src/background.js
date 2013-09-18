@@ -41,9 +41,6 @@ require(["app"] , function (app) {
         if (this[i] === needle) {
             this.splice(i, 1);
         }
-        else {
-            throw new Error(needle + " not found in array " + this);
-        }
     };
 
     return app.init();

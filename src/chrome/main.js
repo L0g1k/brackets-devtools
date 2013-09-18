@@ -4,11 +4,17 @@
 
 define(["model/Page"], function (Page) {
     return {
+
+        ports: [],
+
         init: function () {
             chrome.extension.onConnect.addListener(dojo.hitch(this, "onConnect"));
         },
 
         onConnect: function (port) {
+
+
+
             if (!port.name == "brackets-devtools")
                 return;
 
@@ -25,14 +31,14 @@ define(["model/Page"], function (Page) {
             port.onDisconnect.addListener(function (port) {
                 this.emit("disconnect", page);
             }.bind(this));
+
+            port.onMessage.addListener(function (message) {
+                this.emit("message", message);
+            }.bind(this));
         },
 
         echo: function () {
             $(this).triggerHandler("connect");
-        },
-
-        attachDebugger: function() {
-
         }
     }
 });

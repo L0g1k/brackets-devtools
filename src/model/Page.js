@@ -24,6 +24,10 @@ define(["chrome/debug"], function (debug) {
             this.on("detach", _.hitch(this, "onDetach"))
         },
 
+        sendDebugCommand: function(id, method, params) {
+            debug.sendCommand(this, id, method, params);
+        },
+
         onAttach: function() {
             this.debuggerAttached = true;
         },
