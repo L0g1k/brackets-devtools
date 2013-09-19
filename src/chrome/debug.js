@@ -33,7 +33,9 @@ define(["model/Page"], function (Page) {
 
         sendCommand: function(page, id, method, params) {
             chrome.debugger.sendCommand({tabId: page.tabId}, method, params, function(result){
-                console.debug("Result of " + method, result);
+                var keepAlive = params.functionDeclaration && params.functionDeclaration == "_LD.keepAlive";
+                if(!keepAlive)
+                    console.debug("Result of " + method, result);
                 page.emit("debugResult", id, result);
             });
         }

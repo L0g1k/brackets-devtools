@@ -6,7 +6,7 @@ define(["remoteDebug/main", "chrome/main", "chrome/debug"] ,
             remoteDebug.init();
             debug.init();
             extension.on("connect", function(page) {
-                console.debug("Page has connected");
+                console.debug("Page " + page.tabURL + " has connected (tabId:" + page.tabId + ")");
             });
             extension.on("disconnect", function(page) {
                 console.debug("Page has disconnected");

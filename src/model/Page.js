@@ -25,6 +25,9 @@ define(["chrome/debug"], function (debug) {
         },
 
         sendDebugCommand: function(id, method, params) {
+            var keepAlive = params.functionDeclaration && params.functionDeclaration == "_LD.keepAlive";
+            if(!keepAlive)
+                console.debug("Brackets:\t" + method, params);
             debug.sendCommand(this, id, method, params);
         },
 
