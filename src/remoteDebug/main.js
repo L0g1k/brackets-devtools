@@ -65,7 +65,10 @@ define(["chrome/main", "chrome/debug"], function(extension, debug){
 
             console.log("Brackets connection established");
             port.onMessage.addListener(function(message){
-
+                if(message == "marco") {
+                    port.postMessage("polo")
+                    return;
+                }
                 var currentPage = this.currentPage;
 
                 if(currentPage && message.method) {

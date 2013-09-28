@@ -1,17 +1,15 @@
 ﻿{
     "name": "Quickfire for Chrome Developer Tools",
-    "version": "0.2",
+    "version": "0.5",
     "description": "Integrates the Chrome Developer Tools with Quickfire, an IDE for Chrome",
-    "permissions": [
-        "contextMenus", "debugger"
-    ],
+    "permissions": ["debugger"],
     "devtools_page": "src/devtools.html",
     "background": {
         "page": "src/background.html"
     },
     "content_scripts": [
         {
-            "matches": ["http://*.localhost:8080/*", "http://*.localhost:8081/*","http://*.localhost/*", "http://*.pixeljet.net/*"],
+            "matches": ["http://localhost:8081/*"],
             "css": [],
             "js": ["src/content-script.js"]
         }

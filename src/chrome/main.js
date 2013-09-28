@@ -13,8 +13,6 @@ define(["model/Page"], function (Page) {
 
         onConnect: function (port) {
 
-
-
             if (!port.name == "brackets-devtools")
                 return;
 
