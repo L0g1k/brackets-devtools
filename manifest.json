@@ -1,8 +1,8 @@
 ﻿{
     "name": "Quickfire for Chrome Developer Tools",
-    "version": "0.5",
+    "version": "0.5.1",
     "description": "Integrates the Chrome Developer Tools with Quickfire, an IDE for Chrome",
-    "permissions": ["debugger"],
+    "permissions": ["debugger", "management"],
     "devtools_page": "src/devtools.html",
     "background": {
         "page": "src/background.html"
