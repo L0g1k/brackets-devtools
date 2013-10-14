@@ -36,18 +36,22 @@ define(["remoteDebug/main", "chrome/main", "chrome/debug"],
 
             function sendId() {
                 console.debug('Sending extension id');
-                var ws = new WebSocket("ws://127.0.0.1:9876");
-                ws.onopen = function () {
-                    ws.send(JSON.stringify({
-                        extensionId: chrome.extension.getBackgroundPage().location.host
-                    }));
-                };
-                ws.onmessage = function(event) {
-                    var msg = JSON.parse(event.data);
-                    if(msg['extensionIdSet']) {
-                        console.debug('Extension id set');
+                var ws;
+                var timer = setInterval(function(){
+                    ws = new WebSocket("ws://127.0.0.1:9876");
+                    ws.onopen = function () {
+                        ws.send(JSON.stringify({
+                            extensionId: chrome.extension.getBackgroundPage().location.host
+                        }));
+                    };
+                    ws.onmessage = function(event) {
+                        var msg = JSON.parse(event.data);
+                        if(msg['extensionIdSet']) {
+                            console.debug('Extension id set');
+                            clearInterval(timer);
+                        }
                     }
-                }
+                }, 500);
             }
         }
     };
